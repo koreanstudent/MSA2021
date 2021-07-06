@@ -1,5 +1,6 @@
 FROM openjdk:11-jdk
 VOLUME /tmp
-ADD ./build/libs/*.jar eureka.jar
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} eureka.jar
 
 ENTRYPOINT ["java","-jar","/eureka.jar"]
