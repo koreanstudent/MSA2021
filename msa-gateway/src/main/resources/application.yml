@@ -6,18 +6,18 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-rul:
-      defaultZone: http://127.0.0.1:8761/eureka
+      defalutZone: http://localhost:8761/eureka
 
 spring:
   application:
     name: apigateway-service
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: first-service
-#          uri: http:localhost:8090/
-#          predicates:
-#            - path=/first-servce/**
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http:localhost:8090/
+          predicates:
+            - path=/user-service/**
 #        - id: second-service
 #          uri: http:localhost:8091/
 #          predicates:

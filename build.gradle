@@ -41,6 +41,7 @@ subprojects {
     // 모듈들이 공통적으로 사용
 	dependencies {
 		 compileOnly('org.projectlombok:lombok')
+		 annotationProcessor 'org.projectlombok:lombok'
 	}
 }
 
