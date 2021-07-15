@@ -11,4 +11,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defalutZone: http://127.0.0.1:8761/eureka
+      defalutZone: http://${eureka.instance.hostname}:${server.port}/eureka/
