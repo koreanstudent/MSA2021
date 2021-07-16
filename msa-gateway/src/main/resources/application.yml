@@ -15,10 +15,6 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: http:localhost:8090/
+          uri: http://localhost:8082/user-service/**
           predicates:
-            - path=/user-service/**
-#        - id: second-service
-#          uri: http:localhost:8091/
-#          predicates:
-#            - path=/second-servce/**
+            - Path=/user-service/**
