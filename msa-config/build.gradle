@@ -1,0 +1,14 @@
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-config-server'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
+// 프로젝트 추가 후 gradle 버전 안맞을 시 해결법
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '6.8'
+//}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

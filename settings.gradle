@@ -3,4 +3,5 @@ include 'msa-eureka'
 include 'msa-gateway'
 include 'msa-user'
 include 'msa-order'
+include 'msa-config'
 
