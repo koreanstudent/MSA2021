@@ -15,6 +15,9 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: http://localhost:8082/user-service/**
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
+          filters:
+#            - AddRequestHeader=user-request
+#            - AddResponseHeader=user-response
