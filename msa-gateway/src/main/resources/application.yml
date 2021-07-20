@@ -21,3 +21,9 @@ spring:
           filters:
 #            - AddRequestHeader=user-request
 #            - AddResponseHeader=user-response
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
