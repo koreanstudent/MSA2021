@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: user-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://211.206.132.104:3306/msa
@@ -32,4 +37,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans
+        include: refresh, health, beans, busrefresh

@@ -1,6 +1,9 @@
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-server'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp:3.0.3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.3'
 
 }
 // 프로젝트 추가 후 gradle 버전 안맞을 시 해결법
