@@ -38,6 +38,12 @@ subprojects {
 		set('springCloudVersion', '2020.0.3')
 	}
 
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+
     // 모듈들이 공통적으로 사용
 	dependencies {
 		 compileOnly('org.projectlombok:lombok')
