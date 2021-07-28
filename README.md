@@ -7,4 +7,4 @@
 - springCloudVersion = '2020.0.3'
 - [Gradle](https://gradle.org/install/)
 - Docker
-
+-test
