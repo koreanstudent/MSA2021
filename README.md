@@ -16,6 +16,7 @@
         - JVM기반의 애플리케이션의 Metrics 제공
         - Spring Framework 5, Spring Boot 2부터 Spring의 Metrics 처리 
         - Prometheus등의 다양한 모니터링 시스템 지원
+        - 로깅 관련된 시스템에서는 SLF4J가 있다면 모니터링(metric) 시스템에서는 Micrometer가 있는 것
         - Timer
           - 짧은 지연 시간, 이벤트의 사용 빈도를 측정
           - 시계열로 이벤트의 시간, 호출 빈도 등을 제공
