@@ -9,6 +9,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -17,11 +18,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    @Autowired ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public Long saveUser(UserSaveReq userDto) {
         String rawPassword =userDto.getPassword();
-        String encodeedPassword = new BCryptPasswordEncoder().encode(rawPassword);
+        String encodeedPassword = passwordEncoder.encode(rawPassword);
         userDto.changePassword(encodeedPassword);
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
