@@ -14,7 +14,6 @@ public class UserRes {
 
     private String name;
 
-
     public UserRes(Long id) {
         this.id = id;
     }

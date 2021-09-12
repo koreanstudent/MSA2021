@@ -12,6 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -21,6 +24,9 @@ public class UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * [사용자] 단건 등록
+     */
     public Long saveUser(UserSaveReq userDto) {
         String rawPassword =userDto.getPassword();
         String encodeedPassword = passwordEncoder.encode(rawPassword);
@@ -43,4 +49,9 @@ public class UserService {
 
     }
 
+    public List<UserRes> findUsers() {
+        return userRepository.findAll()
+                .stream().map(UserRes::new).collect(Collectors.toList());
+
+    }
 }

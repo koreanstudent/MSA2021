@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.POST;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,16 +27,6 @@ public class UserApiController {
         return "welcome to user service";
     }
     /**
-     * [사용자] 단건 조회
-     */
-    @GetMapping("/user/{userId}")
-    @Timed(value ="users.fundUser", longTask = true)
-    public ResponseEntity findUser(@PathVariable Long userId){
-        UserRes user = userService.findUser(userId);
-
-        return ResponseEntity.ok(user);
-    }
-    /**
      * [사용자] 단건 등록
      */
     @PostMapping("/user")
@@ -44,5 +35,22 @@ public class UserApiController {
 
         return ResponseEntity.created(HttpUtill.getCurrentUri(id))
                 .body(Result.success());
+    }
+    /**
+     * [사용자] 단건 조회
+     */
+    @GetMapping("/user/{userId}")
+    @Timed(value ="users.fundUser", longTask = true)
+    public ResponseEntity findUser(@PathVariable Long userId){
+        UserRes user = userService.findUser(userId);
+
+        return ResponseEntity.ok(Result.success(user));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity findUsers(){
+        List<UserRes> users = userService.findUsers();
+
+        return ResponseEntity.ok(Result.success(users));
     }
 }
