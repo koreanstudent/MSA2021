@@ -2,10 +2,17 @@ package kr.co.msa.msauser.api.user;
 
 import io.micrometer.core.annotation.Timed;
 import kr.co.msa.msauser.api.user.dto.UserRes;
+import kr.co.msa.msauser.api.user.dto.UserSaveReq;
 import kr.co.msa.msauser.domain.user.UserService;
+import kr.co.msa.msauser.response.Result;
+import kr.co.msa.msauser.utill.HttpUtill;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.ws.rs.POST;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,5 +34,15 @@ public class UserApiController {
         UserRes user = userService.findUser(userId);
 
         return ResponseEntity.ok(user);
+    }
+    /**
+     * [사용자] 단건 등록
+     */
+    @PostMapping("/user")
+    public ResponseEntity saveUser(@RequestBody UserSaveReq saveReq) throws URISyntaxException {
+        Long id = userService.saveUser(saveReq);
+
+        return ResponseEntity.created(HttpUtill.getCurrentUri(id))
+                .body(Result.success());
     }
 }
