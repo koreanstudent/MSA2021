@@ -29,7 +29,6 @@ public class UserService {
         User userEntity = modelMapper.map(userDto, User.class);
 
 
-
         return userRepository.save(userEntity).getId();
     }
 
