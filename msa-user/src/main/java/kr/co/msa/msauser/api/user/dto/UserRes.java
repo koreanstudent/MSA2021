@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import kr.co.msa.msauser.domain.user.User;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRes {
@@ -22,6 +24,7 @@ public class UserRes {
 //    public UserRes(Long id) {
 //        this.id = id;
 //    }
+    private List<OrderRes> orders;
 
     public UserRes(User entity) {
         this.id = entity.getId();
