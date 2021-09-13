@@ -10,9 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.POST;
 import java.net.URISyntaxException;
-import java.net.http.HttpClient;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -47,6 +45,9 @@ public class UserApiController {
         return ResponseEntity.ok(Result.success(user));
     }
 
+    /**
+     * [사용자] 다건 조회
+     */
     @GetMapping("/user")
     public ResponseEntity findUsers(){
         List<UserRes> users = userService.findUsers();
