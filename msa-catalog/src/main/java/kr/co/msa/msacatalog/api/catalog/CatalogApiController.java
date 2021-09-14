@@ -1,6 +1,6 @@
 package kr.co.msa.msacatalog.api.catalog;
 
-import kr.co.msa.msacatalog.api.catalog.dto.CatalogReq;
+import kr.co.msa.msacatalog.api.catalog.dto.CatalogRes;
 import kr.co.msa.msacatalog.domain.catalog.CatalogService;
 import kr.co.msa.msacatalog.response.Result;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +19,12 @@ public class CatalogApiController {
 
 
     /**
-     * [사용자] 다건 조회
+     *
      */
     @GetMapping("/catalog")
     public ResponseEntity findCatalogs(){
-        List<CatalogReq> users = catalogService.findCatalogs();
+        List<CatalogRes> result = catalogService.findCatalogs();
 
-        return ResponseEntity.ok(Result.success(users));
+        return ResponseEntity.ok(Result.success(result));
     }
 }

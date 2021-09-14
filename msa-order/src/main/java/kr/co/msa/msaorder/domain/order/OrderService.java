@@ -1,5 +1,6 @@
 package kr.co.msa.msaorder.domain.order;
 
+import kr.co.msa.msaorder.api.order.dto.OrderReq;
 import kr.co.msa.msaorder.api.order.dto.OrderRes;
 import kr.co.msa.msaorder.api.order.dto.OrderSaveReq;
 import kr.co.msa.msaorder.exception.BusinessException;
@@ -21,14 +22,12 @@ public class OrderService {
     private final ModelMapper modelMapper;
 
 
-    public OrderSaveReq saveOrder(OrderSaveReq saveReq) {
+    public Long saveOrder(OrderSaveReq saveReq) {
         saveReq.setTotalPrice(saveReq.getUnitPrice() * saveReq.getQty());
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         OrderEntity orderEntity = modelMapper.map(saveReq, OrderEntity.class);
 
-        OrderSaveReq retunValue = modelMapper.map(orderEntity, OrderSaveReq.class);
-
-        return retunValue;
+        return orderRepository.save(orderEntity).getId();
     }
     public OrderRes getOrderByOrderId(String orderId) {
 //        Optional<OrderEntity> orderEntity = orderRepository.findByOrderId(orderId);

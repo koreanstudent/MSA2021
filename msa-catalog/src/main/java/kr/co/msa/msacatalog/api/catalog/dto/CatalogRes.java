@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CatalogReq implements Serializable {
+public class CatalogRes implements Serializable {
     private String productId;
     private String productName;
     private Integer stock;
