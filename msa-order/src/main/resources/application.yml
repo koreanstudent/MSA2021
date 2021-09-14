@@ -1,9 +1,9 @@
 server:
-  port: 8082
+  port: 8084
 
 spring:
   application:
-    name: user-service
+    name: order-service
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -30,9 +30,14 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  #        show_sql: true
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
 
 
+logging:
+  level:
+    kr.co.msa.msacatalog: DEBUG
 
 eureka:
   instance:

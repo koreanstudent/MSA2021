@@ -14,6 +14,7 @@ buildscript {
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.5.1"
 		classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+
 	}
 }
 
@@ -44,10 +45,13 @@ subprojects {
 		}
 	}
 
+
     // 모듈들이 공통적으로 사용
 	dependencies {
 		 compileOnly('org.projectlombok:lombok')
 		 annotationProcessor 'org.projectlombok:lombok'
+		 runtimeOnly "com.h2database:h2:1.4.197"
+		 implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
 	}
 }
 

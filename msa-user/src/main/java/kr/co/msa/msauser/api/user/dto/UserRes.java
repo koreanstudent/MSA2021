@@ -5,23 +5,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import kr.co.msa.msauser.domain.user.User;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRes {
 
-    @JsonProperty("userId")
     private Long id;
+
+    @JsonProperty("userId")
+    private String loginId;
+
+    private String email;
 
     private String name;
 
 
-    public UserRes(Long id) {
-        this.id = id;
-    }
+//    public UserRes(Long id) {
+//        this.id = id;
+//    }
+    private List<OrderRes> orders;
 
     public UserRes(User entity) {
         this.id = entity.getId();
+        this.loginId = entity.getLoginId();
         this.name = entity.getName();
+        this.email = entity.getEmail();
     }
 
 }
