@@ -48,4 +48,11 @@ public class UserService {
                 .stream().map(UserRes::new).collect(Collectors.toList());
 
     }
+
+    public UserRes getUserDeatailsLoginId(String loginId) {
+        return  userRepository.findByLoginId(loginId)
+                .map(UserRes::new)
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_USER));
+
+    }
 }

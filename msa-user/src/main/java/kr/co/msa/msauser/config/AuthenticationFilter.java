@@ -2,9 +2,10 @@ package kr.co.msa.msauser.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.msa.msauser.api.login.dto.AccountGetReq;
+import kr.co.msa.msauser.api.user.dto.UserRes;
+import kr.co.msa.msauser.domain.user.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @Slf4j
+
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    private  UserService userService;
+    private  Environment environment;
+
+    public AuthenticationFilter (AuthenticationManager authenticationManager, UserService userService,Environment environment ) {
+        super.setAuthenticationManager(authenticationManager);
+        this.userService = userService;
+        this.environment = environment;
+    }
+
+
     // 로그인 시도하면 제일먼저 실행됨
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -46,5 +59,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
 
         log.debug( "successfulAuthentication : {}",((User)authResult.getPrincipal()).getUsername() );
+        String userName = ((User)authResult.getPrincipal()).getUsername();
+
+        UserRes result = userService.getUserDeatailsLoginId(userName);
     }
 }

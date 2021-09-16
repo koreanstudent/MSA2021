@@ -1,10 +1,12 @@
 package kr.co.msa.msauser.config;
 
 import kr.co.msa.msauser.domain.user.LoginService;
+import kr.co.msa.msauser.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final LoginService loginService;
+    private final UserService userService;
+    private final Environment env;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -36,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private AuthenticationFilter getAuthenticationFilter() throws  Exception {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
-        authenticationFilter.setAuthenticationManager(authenticationManager());
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager(),userService,env);
+//        authenticationFilter.setAuthenticationManager(authenticationManager());
         return authenticationFilter;
     }
 
