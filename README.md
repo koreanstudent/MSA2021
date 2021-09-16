@@ -8,8 +8,13 @@
 - [Gradle](https://gradle.org/install/)
 - Docker
 
-
-
+## SPRING SECURITY 
+    - 로그인 과정
+        1. AuthenticationFilter.java -> attemptAuthentication() 호출
+        2. UsernamePasswordAuthenticationToken 호출
+        3. userDetailsService.java -> loadUserByUsername() 호출
+        4. userRepository.java -> findByLoginId() 호출
+        5. AuthenticationFilter.java -> successfulAuthentication() 호출
 ## Microservice 모니터링
     - Micrometer
         - https://micrometer.io/
