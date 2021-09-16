@@ -8,5 +8,7 @@ dependencies {
 
     implementation 'io.micrometer:micrometer-registry-prometheus'
 
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

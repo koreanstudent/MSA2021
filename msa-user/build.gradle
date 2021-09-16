@@ -9,6 +9,8 @@ dependencies {
 
     implementation 'io.micrometer:micrometer-registry-prometheus'
 
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' // MariaDB
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 

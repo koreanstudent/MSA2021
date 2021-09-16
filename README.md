@@ -15,6 +15,13 @@
         3. userDetailsService.java -> loadUserByUsername() 호출
         4. userRepository.java -> findByLoginId() 호출
         5. AuthenticationFilter.java -> successfulAuthentication() 호출
+        6. successfulAuthentication() -> jwt 세팅
+    - JWT(JSON Web Token) 장점
+        1. 클라이언트 독립적인 서비스
+        2. CDN (중간에 캐쉬 서버를 놓을 수 있는데 캐쉬 서버와도 인증처리가능)
+        3. No Cookie-Session(사이트간 요청 위조)
+        4. 지속적인 토큰 저장
+            
 ## Microservice 모니터링
     - Micrometer
         - https://micrometer.io/
