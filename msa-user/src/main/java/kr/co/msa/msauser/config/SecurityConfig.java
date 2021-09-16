@@ -11,11 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFilter;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 
-
-import javax.servlet.Filter;
 
 @Configuration
 @EnableWebSecurity
@@ -35,14 +31,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/users/**").permitAll()
                 .and().addFilter(getAuthenticationFilter());
+
         http.headers().frameOptions().disable();
     }
 
-    private SecurityContextHolderAwareRequestFilter getAuthenticationFilter() throws Exception {
-        SecurityContextHolderAwareRequestFilter authenticationFilter = new SecurityContextHolderAwareRequestFilter();
+    private AuthenticationFilter getAuthenticationFilter() throws  Exception {
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
         authenticationFilter.setAuthenticationManager(authenticationManager());
-         return authenticationFilter;
+        return authenticationFilter;
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
