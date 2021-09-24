@@ -30,7 +30,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
     @Override
     public GatewayFilter apply(Config config) {
-        return ((exchange, chain) ->  {
+        return (exchange, chain) ->  {
             ServerHttpRequest request = exchange.getRequest();
 
             if(!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)){
@@ -45,14 +45,14 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             }
 
             return chain.filter(exchange);
-        });
+        };
     }
 
     private boolean isJwtValid(String jwt) {
         boolean returnValue = true;
         String subject = null;
         try{
-            subject = Jwts.parser().setSigningKey(environment.getProperty("token.sercet"))
+            subject = Jwts.parser().setSigningKey(environment.getProperty("token.secret"))
                     .parseClaimsJws(jwt).getBody()
                     .getSubject();
 
