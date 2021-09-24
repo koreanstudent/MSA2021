@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,13 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-    private final PasswordEncoder passwordEncoder;
+
 
 
     public Long saveUser(UserSaveReq userDto) {
         String rawPassword =userDto.getPassword();
-        String encodeedPassword = passwordEncoder.encode(rawPassword);
-        userDto.changePassword(encodeedPassword);
+        String encodedPassword = new BCryptPasswordEncoder().encode(rawPassword);
+        userDto.changePassword(encodedPassword);
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
 
