@@ -8,7 +8,7 @@
 - [Gradle](https://gradle.org/install/)
 - Docker
 
-## SPRING SECURITY 
+## Spring Security
     - 로그인 과정
         1. AuthenticationFilter.java -> attemptAuthentication() 호출
         2. UsernamePasswordAuthenticationToken 호출
@@ -21,7 +21,17 @@
         2. CDN (중간에 캐쉬 서버를 놓을 수 있는데 캐쉬 서버와도 인증처리가능)
         3. No Cookie-Session(사이트간 요청 위조)
         4. 지속적인 토큰 저장
-            
+
+## Spring Cloud Config ( 외부 설정 파일)
+    - spring cloud config 사용 이유?
+        1. 첫째, 마이크로서비스의 어떠한 설정(환경변수값, Spring cloud 설정 등)이 변경되었을때 서버 재시작 없이 동적으로 적용하기 위해서입니다.
+        2. 둘째, 마이크로서비스가 배포될때 제반 설정값들을 배포 대상 환경(개발계, 검증계, 운영계 등)에 맞게 적용하기 위함입니다.
+        3. 셋째, 마이크로서비스를 Stateless하게 개발하기 위해서입니다. Stateless하게 만들어야 스케일링(마이크로서비스 인스턴스 서버 - 즉, 컨테이너의 증감)과 부담없는 재시작이 가능하기 때문입니다.
+    - bootstrap.yml -> application.yml (실행 우선순위)
+
+## Spring Boot Actuator 
+    - Application 상태, 모니터링
+    - Metric 수집을 위한 Http End point 제공
 ## Microservice 모니터링
     - Micrometer
         - https://micrometer.io/
