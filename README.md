@@ -29,6 +29,16 @@
         3. 셋째, 마이크로서비스를 Stateless하게 개발하기 위해서입니다. Stateless하게 만들어야 스케일링(마이크로서비스 인스턴스 서버 - 즉, 컨테이너의 증감)과 부담없는 재시작이 가능하기 때문입니다.
     - bootstrap.yml -> application.yml (실행 우선순위)
 
+## Spring Cloud Bus
+    - AMQP 
+        - 메시지 지향 미들웨어를 위한 개방형 표준 응용 계층 프로토콜
+        - 메시지 지향, 큐잉, 라우팅, 신뢰성, 보안
+        - Erlang, RabbitMQ에서 사용
+    - Kafka 프로젝트
+        - Apache Software Foundation이 Scalar 언어로 개발한 오픈 소스 메시지 브로커 프로젝트
+        - 분산형 스트리밍 플랫폼
+        - 대용량의 데이터를 처리 가능한 메시징 시스템
+    
 ## Spring Boot Actuator 
     - Application 상태, 모니터링
     - Metric 수집을 위한 Http End point 제공
